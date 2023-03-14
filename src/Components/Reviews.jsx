@@ -68,6 +68,7 @@ export default function Reviews() {
               <Link
                 to={url}
                 id={review.review_id}
+                key={review.review_id}
                 onMouseEnter={changeUrl}
                 className="reviewLink">
                 <div

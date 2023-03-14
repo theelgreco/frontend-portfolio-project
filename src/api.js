@@ -25,3 +25,9 @@ export const fetchReviewById = (id) => {
       console.error(err);
     });
 };
+
+export const fetchComments = (id) => {
+  return gamesApi.get(`/reviews/${id}/comments`).then((res) => {
+    return res.data.comments;
+  });
+};
