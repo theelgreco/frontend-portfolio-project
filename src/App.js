@@ -1,10 +1,15 @@
 import "./App.css";
 import Reviews from "./Components/Reviews.jsx";
+import Header from "./Components/Header.jsx";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Reviews />
+      <Header />
+      <Routes>
+        <Route path="/reviews" element={<Reviews />} />
+      </Routes>
     </div>
   );
 }
