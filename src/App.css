@@ -22,7 +22,7 @@
   margin: 2vw;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   padding: 1vh;
-  max-height: 40vw;
+  max-height: fit-content;
   width: 40vw;
   overflow: hidden;
   font-size: 0.8em;
@@ -38,8 +38,7 @@
 
 .review > img {
   aspect-ratio: 16/9;
-  max-width: 50%;
-  max-height: 50%;
+  max-width: 100%;
   object-fit: cover;
 }
 
@@ -85,6 +84,7 @@
 }
 
 .singleComment {
+  max-height: fit-content;
   box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
   margin-top: 15vh;
 }
@@ -116,9 +116,9 @@
 
 .commentBody {
   position: relative;
+  max-height: fit-content;
   max-width: 90%;
   margin: 0 auto;
-  translate: 0% 15%;
 }
 
 .commentText {
@@ -154,8 +154,10 @@
 
 .votes {
   border: 1px solid black;
-  width: 10vw;
-  translate: 10% 5vh;
+  max-width: fit-content;
+  height: fit-content;
+  margin: 5vh auto;
+  translate: 0% 2vh;
 }
 
 @keyframes dotdotdot {
