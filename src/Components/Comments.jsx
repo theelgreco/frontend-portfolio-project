@@ -27,7 +27,9 @@ export default function Comments({ review_id }) {
                     Posted: {new Date(comment.created_at).toLocaleDateString()}
                   </p>
                 </div>
-                <span>{comment.author}</span>
+                <div className="author">
+                  <span>{comment.author}</span>
+                </div>
               </div>
             );
           })}

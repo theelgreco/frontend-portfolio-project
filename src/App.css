@@ -86,6 +86,7 @@
 .singleComment {
   max-height: fit-content;
   box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
+  border-radius: 2em;
   margin-top: 15vh;
 }
 
@@ -103,13 +104,14 @@
   border-right: 1.2em solid transparent;
   border-bottom: 1.2em solid rgba(205, 205, 205, 0.606);
   transform: rotate(-45deg);
-  margin-left: 0.2em;
+  margin-left: -1em;
 }
 
 .singleComment span {
   position: relative;
-  left: 26%;
-  top: 2.5em;
+  padding: 0.5em;
+  left: 24%;
+  top: 5.5em;
   font-size: 0.8em;
   font-style: italic;
 }
@@ -153,9 +155,18 @@
 }
 
 .votes {
-  border: 1px solid black;
+  border: 2px solid black;
   max-width: fit-content;
   height: fit-content;
+  border-radius: 2em;
+  padding: 0.5em;
+}
+
+.review .votes {
+  margin: 2vh auto;
+}
+
+.singleComment .votes {
   margin: 5vh auto;
   translate: 0% 2vh;
 }

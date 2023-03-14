@@ -92,7 +92,10 @@ export default function Reviews() {
                     <p id={review.review_id} onMouseOver={changeUrl}>
                       By {review.owner}
                     </p>
-                    <p id={review.review_id} onMouseOver={changeUrl}>
+                    <p
+                      id={review.review_id}
+                      className="votes"
+                      onMouseOver={changeUrl}>
                       Votes: {review.votes}
                     </p>
                   </div>
