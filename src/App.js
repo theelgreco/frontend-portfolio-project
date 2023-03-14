@@ -1,7 +1,17 @@
 import "./App.css";
+import Reviews from "./Components/Reviews.jsx";
+import Header from "./Components/Header.jsx";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Reviews />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

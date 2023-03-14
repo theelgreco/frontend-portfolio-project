@@ -2,37 +2,51 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Reviews {
+  width: 100%;
+  /* background-color: gold; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.reviewsContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow: row wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.singleReview {
+  margin: 2vw;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  padding: 1vh;
+  max-height: 40vw;
+  width: 40vw;
+  overflow: hidden;
+  font-size: 0.8em;
+  align-items: center;
+  transition: scale 0.3s ease-in;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.singleReview:hover {
+  scale: 1.1;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+
+.singleReview > img {
+  aspect-ratio: 16/9;
+  max-width: 50%;
+  max-height: 50%;
+  object-fit: cover;
+}
+
+.reviewTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reviewBody {
+  width: 65%;
+  margin: 0 auto;
+  display: none;
 }
