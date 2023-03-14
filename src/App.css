@@ -4,7 +4,6 @@
 
 .Reviews {
   width: 100%;
-  /* background-color: gold; */
 }
 
 .reviewsContainer {
@@ -14,7 +13,12 @@
   align-items: center;
 }
 
-.singleReview {
+.reviewLink {
+  text-decoration: none;
+  color: black;
+}
+
+.review {
   margin: 2vw;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   padding: 1vh;
@@ -26,13 +30,13 @@
   transition: scale 0.3s ease-in;
 }
 
-.singleReview:hover {
+.review:hover {
   scale: 1.1;
   cursor: pointer;
   transition: 0.5s ease-in-out;
 }
 
-.singleReview > img {
+.review > img {
   aspect-ratio: 16/9;
   max-width: 50%;
   max-height: 50%;
@@ -45,8 +49,35 @@
   text-overflow: ellipsis;
 }
 
-.reviewBody {
-  width: 65%;
+/* .SingleReviewComponent {
+} */
+
+.singleReview {
   margin: 0 auto;
-  display: none;
+  width: 70vw;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  padding: 2vh;
+}
+
+.singleReview > img {
+  aspect-ratio: 16/9;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  object-fit: cover;
+  width: 75%;
+}
+
+.reviewBody {
+  line-height: 2rem;
+  max-width: 75%;
+  margin: 0 auto;
+}
+
+.reviewBody > p {
+  margin-top: 5vh;
+}
+
+.reviewBody > p:nth-child(2) {
+  font-style: italic;
+  font-size: 0.8em;
+  color: rgb(167, 167, 167);
 }

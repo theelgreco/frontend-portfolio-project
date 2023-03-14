@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { fetchReviews } from "../api";
+import { Link } from "react-router-dom";
 
 export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [pages, setPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [url, setUrl] = useState("");
 
   useEffect(() => {
     fetchReviews().then((res) => {
@@ -40,6 +42,10 @@ export default function Reviews() {
     setCurrentPage(e.target.value);
   }
 
+  function changeUrl(e) {
+    setUrl(`/${e.target.id}`);
+  }
+
   return (
     <main className="Reviews">
       <h1>REVIEWS</h1>
@@ -58,18 +64,23 @@ export default function Reviews() {
         ) : (
           createNestedArrays(reviews, pages)[currentPage].map((review) => {
             return (
-              <div key={review.review_id} className="singleReview">
-                <img src={review.review_img_url} alt={review.title}></img>
-                <div>
-                  <h2 className="reviewTitle">{review.title}</h2>
-                  <p>By {review.owner}</p>
-                  <p className="reviewBody">{review.review_body}</p>
-                  <p className="reviewBody">
-                    Posted: {Date(review.created_at)}
-                  </p>
-                  <p>Votes: {review.votes}</p>
+              <Link
+                to={url}
+                id={review.review_id}
+                onMouseEnter={changeUrl}
+                className="reviewLink">
+                <div
+                  id={review.review_id}
+                  key={review.review_id}
+                  className="review">
+                  <img src={review.review_img_url} alt={review.title}></img>
+                  <div>
+                    <h2 className="reviewTitle">{review.title}</h2>
+                    <p>By {review.owner}</p>
+                    <p>Votes: {review.votes}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
           })
         )}
