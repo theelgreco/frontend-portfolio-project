@@ -30,7 +30,7 @@ export default function SingleReview() {
               alt={singleReview.title}></img>
             <div className="reviewBody">
               <p>{singleReview.review_body}</p>
-              <p>
+              <p className="date">
                 Posted: {new Date(singleReview.created_at).toLocaleDateString()}
               </p>
             </div>

@@ -21,9 +21,9 @@ export default function Comments({ review_id }) {
                 id={comment.comment_id}
                 key={comment.comment_id}>
                 <div className="commentBody">
-                  <p>{comment.body}</p>
-                  <p>Votes: {comment.votes}</p>
-                  <p>
+                  <p className="commentText">{comment.body}</p>
+                  <p className="votes">{comment.votes} votes</p>
+                  <p className="date">
                     Posted: {new Date(comment.created_at).toLocaleDateString()}
                   </p>
                 </div>

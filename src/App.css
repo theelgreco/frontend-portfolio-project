@@ -73,7 +73,7 @@
   margin-top: 5vh;
 }
 
-.reviewBody > p:nth-child(2) {
+.date {
   font-style: italic;
   font-size: 0.8em;
   color: rgb(167, 167, 167);
@@ -121,6 +121,11 @@
   translate: 0% 15%;
 }
 
+.commentText {
+  font-style: italic;
+  translate: 0 2vh;
+}
+
 .noComments {
   max-width: 74%;
   margin: 10vh auto;
@@ -133,4 +138,10 @@
   top: 50%;
   translate: 0% -50%;
   font-style: italic;
+}
+
+.votes {
+  border: 1px solid black;
+  width: 10vw;
+  translate: 10% 5vh;
 }
