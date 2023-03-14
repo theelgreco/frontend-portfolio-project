@@ -140,8 +140,35 @@
   font-style: italic;
 }
 
+.loading::after {
+  content: "";
+  position: relative;
+  top: 50%;
+  translate: 0% -50%;
+  font-style: italic;
+  animation-name: dotdotdot;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
 .votes {
   border: 1px solid black;
   width: 10vw;
   translate: 10% 5vh;
+}
+
+@keyframes dotdotdot {
+  0% {
+    content: "";
+  }
+  35% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
 }

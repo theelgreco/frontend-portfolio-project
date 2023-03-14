@@ -61,7 +61,7 @@ export default function Reviews() {
       </select>
       <section className="reviewsContainer">
         {isLoading ? (
-          <h1>LOADING...</h1>
+          <h1 className="loading">LOADING</h1>
         ) : (
           createNestedArrays(reviews, pages)[currentPage].map((review) => {
             return (
