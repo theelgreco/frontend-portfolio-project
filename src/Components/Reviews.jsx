@@ -10,6 +10,7 @@ export default function Reviews() {
   const [url, setUrl] = useState("");
 
   useEffect(() => {
+    setIsLoading(true);
     fetchReviews().then((res) => {
       setReviews(res);
       setPages(Math.ceil(res.length / 6));
@@ -60,7 +61,7 @@ export default function Reviews() {
       </select>
       <section className="reviewsContainer">
         {isLoading ? (
-          <h1>Loading</h1>
+          <h1>LOADING...</h1>
         ) : (
           createNestedArrays(reviews, pages)[currentPage].map((review) => {
             return (
