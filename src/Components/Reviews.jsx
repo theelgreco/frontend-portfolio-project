@@ -2,10 +2,14 @@ import { useState, useEffect } from "react";
 import { fetchReviews } from "../api";
 import { Link } from "react-router-dom";
 
-export default function Reviews() {
+export default function Reviews({
+  currentPage,
+  setCurrentPage,
+  selected,
+  setSelected,
+}) {
   const [reviews, setReviews] = useState([]);
   const [pages, setPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState("");
 
@@ -17,8 +21,6 @@ export default function Reviews() {
       setIsLoading(false);
     });
   }, []);
-
-  useEffect(() => {}, []);
 
   function createNestedArrays(arr, num) {
     const nestedArr = [];
@@ -41,6 +43,7 @@ export default function Reviews() {
 
   function handleSelect(e) {
     setCurrentPage(e.target.value);
+    setSelected(e.target.value);
   }
 
   function changeUrl(e) {
@@ -50,10 +53,10 @@ export default function Reviews() {
   return (
     <main className="Reviews">
       <h1>REVIEWS</h1>
-      <select onChange={handleSelect}>
+      <select id="select" onChange={handleSelect} value={selected}>
         {createNestedArrays(reviews, pages).map((arr, index) => {
           return (
-            <option value={index} key={index}>
+            <option value={index} key={index} id={index}>
               Page {index + 1}
             </option>
           );
