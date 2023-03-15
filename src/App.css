@@ -22,7 +22,7 @@
   margin: 2vw;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   padding: 1vh;
-  max-height: 40vw;
+  max-height: fit-content;
   width: 40vw;
   overflow: hidden;
   font-size: 0.8em;
@@ -30,16 +30,17 @@
   transition: scale 0.3s ease-in;
 }
 
-.review:hover {
+.review:hover,
+.reviewLink:focus {
   scale: 1.1;
   cursor: pointer;
   transition: 0.5s ease-in-out;
+  outline: none;
 }
 
 .review > img {
-  aspect-ratio: 16/9;
-  max-width: 50%;
-  max-height: 50%;
+  aspect-ratio: 3/2;
+  max-width: 100%;
   object-fit: cover;
 }
 
@@ -49,9 +50,6 @@
   text-overflow: ellipsis;
 }
 
-/* .SingleReviewComponent {
-} */
-
 .singleReview {
   margin: 0 auto;
   width: 70vw;
@@ -60,7 +58,7 @@
 }
 
 .singleReview > img {
-  aspect-ratio: 16/9;
+  aspect-ratio: 3/2;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   object-fit: cover;
   width: 75%;
@@ -76,8 +74,116 @@
   margin-top: 5vh;
 }
 
-.reviewBody > p:nth-child(2) {
+.date {
   font-style: italic;
   font-size: 0.8em;
   color: rgb(167, 167, 167);
+}
+
+.commentsList {
+  max-width: 74%;
+  margin: 0 auto;
+}
+
+.singleComment {
+  max-height: fit-content;
+  box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
+  border-radius: 2em;
+  margin-top: 15vh;
+}
+
+.singleComment:first-child {
+  margin-top: 9vh;
+}
+
+.singleComment::after {
+  content: "";
+  display: inline-block;
+  position: relative;
+  bottom: -20px;
+  left: 25%;
+  border-left: 1.2em solid transparent;
+  border-right: 1.2em solid transparent;
+  border-bottom: 1.2em solid rgba(205, 205, 205, 0.606);
+  transform: rotate(-45deg);
+  margin-left: -1em;
+}
+
+.singleComment span {
+  position: relative;
+  padding: 0.5em;
+  left: 24%;
+  top: 5.5em;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.commentBody {
+  position: relative;
+  max-height: fit-content;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.commentText {
+  font-style: italic;
+  translate: 0 2vh;
+}
+
+.noComments {
+  max-width: 74%;
+  margin: 10vh auto;
+  height: 20vh;
+  box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
+}
+
+.noComments p {
+  position: relative;
+  top: 50%;
+  translate: 0% -50%;
+  font-style: italic;
+}
+
+.loading::after {
+  content: "";
+  position: relative;
+  top: 50%;
+  translate: 0% -50%;
+  font-style: italic;
+  animation-name: dotdotdot;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.votes {
+  border: 2px solid black;
+  max-width: fit-content;
+  height: fit-content;
+  border-radius: 2em;
+  padding: 0.5em;
+}
+
+.review .votes {
+  margin: 2vh auto;
+}
+
+.singleComment .votes {
+  margin: 5vh auto;
+  translate: 0% 2vh;
+}
+
+@keyframes dotdotdot {
+  0% {
+    content: "";
+  }
+  35% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
 }

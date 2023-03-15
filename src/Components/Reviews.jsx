@@ -2,10 +2,14 @@ import { useState, useEffect } from "react";
 import { fetchReviews } from "../api";
 import { Link } from "react-router-dom";
 
-export default function Reviews() {
+export default function Reviews({
+  currentPage,
+  setCurrentPage,
+  selected,
+  setSelected,
+}) {
   const [reviews, setReviews] = useState([]);
   const [pages, setPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState("");
 
@@ -17,8 +21,6 @@ export default function Reviews() {
       setIsLoading(false);
     });
   }, []);
-
-  useEffect(() => {}, []);
 
   function createNestedArrays(arr, num) {
     const nestedArr = [];
@@ -41,6 +43,7 @@ export default function Reviews() {
 
   function handleSelect(e) {
     setCurrentPage(e.target.value);
+    setSelected(e.target.value);
   }
 
   function changeUrl(e) {
@@ -50,10 +53,10 @@ export default function Reviews() {
   return (
     <main className="Reviews">
       <h1>REVIEWS</h1>
-      <select onChange={handleSelect}>
+      <select id="select" onChange={handleSelect} value={selected}>
         {createNestedArrays(reviews, pages).map((arr, index) => {
           return (
-            <option value={index} key={index}>
+            <option value={index} key={index} id={index}>
               Page {index + 1}
             </option>
           );
@@ -61,24 +64,43 @@ export default function Reviews() {
       </select>
       <section className="reviewsContainer">
         {isLoading ? (
-          <h1>LOADING...</h1>
+          <h1 className="loading">LOADING</h1>
         ) : (
           createNestedArrays(reviews, pages)[currentPage].map((review) => {
             return (
               <Link
                 to={url}
                 id={review.review_id}
-                onMouseEnter={changeUrl}
+                key={review.review_id}
+                onMouseOver={changeUrl}
+                onClickCapture={changeUrl}
                 className="reviewLink">
                 <div
                   id={review.review_id}
                   key={review.review_id}
+                  onMouseOver={changeUrl}
                   className="review">
-                  <img src={review.review_img_url} alt={review.title}></img>
-                  <div>
-                    <h2 className="reviewTitle">{review.title}</h2>
-                    <p>By {review.owner}</p>
-                    <p>Votes: {review.votes}</p>
+                  <img
+                    src={review.review_img_url}
+                    alt={review.title}
+                    id={review.review_id}
+                    onMouseOver={changeUrl}></img>
+                  <div id={review.review_id} onMouseOver={changeUrl}>
+                    <h2
+                      className="reviewTitle"
+                      id={review.review_id}
+                      onMouseOver={changeUrl}>
+                      {review.title}
+                    </h2>
+                    <p id={review.review_id} onMouseOver={changeUrl}>
+                      By {review.owner}
+                    </p>
+                    <p
+                      id={review.review_id}
+                      className="votes"
+                      onMouseOver={changeUrl}>
+                      Votes: {review.votes}
+                    </p>
                   </div>
                 </div>
               </Link>
