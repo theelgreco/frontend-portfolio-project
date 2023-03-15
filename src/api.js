@@ -27,7 +27,21 @@ export const fetchReviewById = (id) => {
 };
 
 export const fetchComments = (id) => {
-  return gamesApi.get(`/reviews/${id}/comments`).then((res) => {
-    return res.data.comments;
+  return gamesApi
+    .get(`/reviews/${id}/comments`)
+    .then((res) => {
+      return res.data.comments;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+export const patchVotes = (id, votes) => {
+  const data = { inc_votes: votes };
+  return gamesApi.patch(`/reviews/${id}`, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 };
