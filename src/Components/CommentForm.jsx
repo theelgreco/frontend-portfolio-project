@@ -124,6 +124,7 @@ export default function CommentForm({ review_id }) {
             </div>
           );
         })}
+        <h1 className="profileTitle">choose a profile:</h1>
         <div className="close">
           <p onClickCapture={handleClick} id={"closeBtn"}>
             X
