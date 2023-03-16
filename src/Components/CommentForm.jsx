@@ -6,6 +6,7 @@ export default function CommentForm({ comments, setComments }) {
   //   const [newComment, setNewComment] = useState({});
   const [users, setUsers] = useState([]);
   const [usersClass, setUsersClass] = useState("users hidden");
+  const [isSignedIn, setIsSignedin] = useState(false);
 
   useEffect(() => {
     fetchUsers().then((res) => {
@@ -44,20 +45,26 @@ export default function CommentForm({ comments, setComments }) {
       return user;
     });
 
+    setIsSignedin(true);
     setUsers(selectedUser);
   }
 
   return (
     <section>
-      <form className="commentForm" onSubmit={handleSubmit}>
-        <textarea
-          type="textarea"
-          id="textForm"
-          onClick={handleClick}
-          required></textarea>
-      </form>
+      <button className="commentBtn" onClick={handleClick} required>
+        WRITE A COMMENT
+      </button>
       <div className={usersClass}>
-        <textarea className="commentForm"></textarea>
+        {isSignedIn ? (
+          <>
+            <form>
+              <textarea className="commentForm"></textarea>
+              <button className="commentBtn submit">Post Comment</button>
+            </form>
+          </>
+        ) : (
+          <></>
+        )}
         {users.map((user) => {
           return (
             <div
@@ -69,10 +76,14 @@ export default function CommentForm({ comments, setComments }) {
                 src={user.avatar_url}
                 id={user.username}
                 alt={user.username}></img>
+              {isSignedIn ? (
+                <button className="commentBtn profile">Change profile</button>
+              ) : (
+                <></>
+              )}
             </div>
           );
         })}
-
         <div className="close">
           <p onClick={handleClick} id={"closeBtn"}>
             X
