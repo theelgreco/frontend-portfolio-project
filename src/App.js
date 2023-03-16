@@ -10,6 +10,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selected, setSelected] = useState(0);
   const [votedReviews, setVotedReviews] = useState({});
+  const [sortBy, setSortBy] = useState("");
+  const [order, setOrder] = useState("");
 
   function handleVoteClick(e) {
     let review_id;
@@ -70,6 +72,10 @@ function App() {
               setSelected={setSelected}
               votedReviews={votedReviews}
               handleVoteClick={handleVoteClick}
+              sortBy={sortBy}
+              order={order}
+              setOrder={setOrder}
+              setSortBy={setSortBy}
             />
           }
         />

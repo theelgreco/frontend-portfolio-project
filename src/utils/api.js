@@ -4,9 +4,30 @@ const gamesApi = axios.create({
   baseURL: "https://nc-games-ki7a.onrender.com/api",
 });
 
-export const fetchReviews = () => {
+export const fetchReviews = (category, sortBy, order) => {
+  let urlString = `/reviews`;
+  if (category) {
+    urlString += `?category=${category}`;
+    if (sortBy) {
+      urlString += `&sort_by=${sortBy}`;
+    }
+    if (order) {
+      urlString += `&order=${order}`;
+    }
+  }
+
+  if (!category) {
+    if (sortBy) {
+      urlString += `?sort_by=${sortBy}`;
+      if (order) {
+        urlString += `&order=${order}`;
+      }
+    } else if (order) {
+      urlString += `?order=${order}`;
+    }
+  }
   return gamesApi
-    .get("/reviews")
+    .get(urlString)
     .then((res) => {
       return res.data.reviews;
     })
