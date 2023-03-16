@@ -187,3 +187,151 @@
     content: "...";
   }
 }
+
+.commentForm {
+  position: relative;
+  display: grid;
+  max-width: 74%;
+  margin: 10vh auto;
+}
+
+.commentForm > textarea {
+  resize: none;
+  border-radius: 1em;
+  max-width: 100%;
+  height: auto;
+  height: 30vh;
+  font: inherit;
+  line-height: 2rem;
+  padding: 1em;
+}
+
+.users::-webkit-scrollbar {
+  display: none;
+}
+
+.users {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65vw;
+  height: 90vh;
+  max-height: fit-content;
+  border: 2px solid black;
+  z-index: 100;
+  /* background-color: white; */
+  flex-flow: column-reverse nowrap;
+  overflow: scroll;
+  justify-content: space-between;
+  border-radius: 2em;
+  backdrop-filter: blur(1em);
+  animation: borderGlow 6s cubic-bezier(0.075, 0.82, 0.165, 1) 0s infinite
+    alternate-reverse;
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes borderGlow {
+  0% {
+    box-shadow: rgba(238, 130, 238, 1) 0px 22px 11em 1em;
+  }
+  25% {
+    box-shadow: rgba(238, 130, 238, 1) 0px 22px 11em 2em;
+  }
+  50% {
+    box-shadow: rgba(238, 130, 238, 1) 0px 22px 11em 3em;
+  }
+  75% {
+    box-shadow: rgba(238, 130, 238, 1) 0px 22px 11em 4em;
+  }
+  100% {
+    box-shadow: rgba(238, 130, 238, 1) 0px 22px 11em 5em;
+  }
+}
+
+@keyframes borderAppear {
+  0% {
+    box-shadow: none;
+  }
+  25% {
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px;
+  }
+  50% {
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px,
+      rgba(240, 46, 170, 0.3) 10px 10px;
+  }
+  75% {
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px,
+      rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px;
+  }
+  100% {
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px,
+      rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px,
+      rgba(240, 46, 170, 0.1) 20px 20px;
+  }
+}
+
+.close {
+  display: grid;
+  cursor: pointer;
+  place-items: center;
+  background-color: violet;
+  color: white;
+  font-size: 0.5em;
+  width: 2.5em;
+  border-radius: 50%;
+  margin-left: 4%;
+  margin-top: 4%;
+  scale: 1.5;
+}
+
+.close > p {
+  font-size: 2em;
+  margin: 0 auto;
+}
+
+.userIcon {
+  cursor: pointer;
+  position: relative;
+  width: 200px;
+  height: 50px;
+  border: 1px solid rgb(238, 130, 238);
+  margin: 5em auto;
+}
+
+.userIcon > p {
+  position: absolute;
+  font-weight: 550;
+  font-size: 1.2em;
+  color: black;
+  top: 1.7em;
+  left: 50%;
+  height: 1em;
+  transform: translate(-50%, 0%);
+  padding: 0.4em;
+  border-left: 0.15em solid violet;
+  border-right: 0.15em solid violet;
+}
+
+.userIcon > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 3/2;
+  object-fit: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.selected {
+  position: absolute;
+  top: -5vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

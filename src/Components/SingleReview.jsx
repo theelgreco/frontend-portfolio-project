@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { fetchReviewById } from "../api";
+import { fetchReviewById } from "../utils/api";
 import { useState, useEffect } from "react";
 import Comments from "./Comments";
 

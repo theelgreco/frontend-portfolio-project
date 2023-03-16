@@ -31,3 +31,9 @@ export const fetchComments = (id) => {
     return res.data.comments;
   });
 };
+
+export const fetchUsers = () => {
+  return gamesApi.get("/users").then((res) => {
+    return res.data.users;
+  });
+};

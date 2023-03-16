@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchReviews } from "../api";
+import { fetchReviews } from "../utils/api";
 import { Link } from "react-router-dom";
 
 export default function Reviews({
