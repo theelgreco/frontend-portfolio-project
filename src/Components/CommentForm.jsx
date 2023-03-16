@@ -30,19 +30,21 @@ export default function CommentForm({ review_id }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setFormText("");
-    setIsPosting(true);
-    users.map((user) => {
-      return (user.className = "hidden");
-    });
-    postComment(newComment, review_id).then(() => {
-      setUsersClass("hidden");
-      setIsPosting(false);
-      setIsSignedin(false);
+    if (formText.length) {
+      setFormText("");
+      setIsPosting(true);
       users.map((user) => {
-        return (user.className = "userIcon");
+        return (user.className = "hidden");
       });
-    });
+      postComment(newComment, review_id).then(() => {
+        setUsersClass("hidden");
+        setIsPosting(false);
+        setIsSignedin(false);
+        users.map((user) => {
+          return (user.className = "userIcon");
+        });
+      });
+    }
   }
 
   function handleClick(e) {
@@ -92,7 +94,8 @@ export default function CommentForm({ review_id }) {
               <textarea
                 className="commentForm"
                 value={formText}
-                onChange={handleChange}></textarea>
+                onChange={handleChange}
+                required></textarea>
               <button className="commentBtn submit">Post Comment</button>
             </form>
           </>
