@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchComments } from "../api";
+import { fetchComments } from "../utils/api";
+import CommentForm from "./CommentForm";
 
 export default function Comments({ review_id }) {
   const [comments, setComments] = useState([]);
@@ -8,10 +9,15 @@ export default function Comments({ review_id }) {
     fetchComments(review_id).then((res) => {
       setComments(res);
     });
-  }, [review_id]);
+  }, [review_id, comments]);
 
   return (
     <section className="CommentsComponent">
+      <CommentForm
+        comments={comments}
+        setComments={setComments}
+        review_id={review_id}
+      />
       {comments.length ? (
         <div className="commentsList">
           {comments.map((comment) => {
