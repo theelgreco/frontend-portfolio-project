@@ -4,9 +4,14 @@ const gamesApi = axios.create({
   baseURL: "https://nc-games-ki7a.onrender.com/api",
 });
 
-export const fetchReviews = () => {
+export const fetchReviews = (category) => {
+  let urlString = `/reviews`;
+  if (category) {
+    urlString += `?category=${category}`;
+  }
+
   return gamesApi
-    .get("/reviews")
+    .get(urlString)
     .then((res) => {
       return res.data.reviews;
     })
@@ -43,5 +48,11 @@ export const patchVotes = (id, votes) => {
     headers: {
       "Content-Type": "application/json",
     },
+  });
+};
+
+export const fetchCategories = () => {
+  return gamesApi.get("/categories").then((res) => {
+    return res.data.categories;
   });
 };

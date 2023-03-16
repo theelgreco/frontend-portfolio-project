@@ -1,6 +1,7 @@
 import "./App.css";
 import Reviews from "./Components/Reviews.jsx";
 import Header from "./Components/Header.jsx";
+import Categories from "./Components/Categories.jsx";
 import { Routes, Route } from "react-router-dom";
 import SingleReview from "./Components/SingleReview";
 import { useState } from "react";
@@ -10,7 +11,6 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selected, setSelected] = useState(0);
   const [votedReviews, setVotedReviews] = useState({});
-
   function handleVoteClick(e) {
     let review_id;
     let votes;
@@ -73,14 +73,16 @@ function App() {
             />
           }
         />
+        <Route path="/categories/:category" element={<Categories />} />
         <Route
-          path="/:review_id"
+          path="/reviews/:review_id"
           element={
             <SingleReview
               votedReviews={votedReviews}
               handleVoteClick={handleVoteClick}
             />
-          }></Route>
+          }
+        />
       </Routes>
     </div>
   );

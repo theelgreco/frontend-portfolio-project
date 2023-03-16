@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchReviews, patchVotes } from "../api";
+import { fetchReviews, fetchCategories } from "../api";
 import { Link } from "react-router-dom";
 
 export default function Reviews({
@@ -14,6 +14,13 @@ export default function Reviews({
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchCategories().then((res) => {
+      setCategories(res);
+    });
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -60,12 +67,29 @@ export default function Reviews({
   }
 
   function changeUrl(e) {
-    setUrl(`/${e.target.id}`);
+    if (parseInt(e.target.id)) {
+      setUrl(`/reviews/${e.target.id}`);
+    } else {
+      setUrl(`/categories/${e.target.id}`);
+    }
   }
 
   return (
     <main className="Reviews">
       <h1>REVIEWS</h1>
+      <div className="categoryButtons">
+        {categories.map((category) => {
+          return (
+            <Link
+              to={url}
+              id={category.slug}
+              onMouseOver={changeUrl}
+              onClickCapture={changeUrl}>
+              <button id={category.slug}>{category.slug}</button>
+            </Link>
+          );
+        })}
+      </div>
       <select id="select" onChange={handleSelect} value={selected}>
         {createNestedArrays(reviews, pages).map((arr, index) => {
           return (
