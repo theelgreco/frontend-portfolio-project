@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchReviews } from "../utils/api";
+import { fetchReviews, patchVotes } from "../utils/api";
 import { Link } from "react-router-dom";
 
 export default function Reviews({
@@ -7,6 +7,8 @@ export default function Reviews({
   setCurrentPage,
   selected,
   setSelected,
+  votedReviews,
+  handleVoteClick,
 }) {
   const [reviews, setReviews] = useState([]);
   const [pages, setPages] = useState(0);
@@ -16,11 +18,22 @@ export default function Reviews({
   useEffect(() => {
     setIsLoading(true);
     fetchReviews().then((res) => {
+      res.map((review) => {
+        if (
+          Object.keys(votedReviews).includes(review.review_id.toString()) &&
+          votedReviews[review.review_id]
+        ) {
+          review.className = "votes voted";
+        } else {
+          review.className = "votes";
+        }
+        return review;
+      });
       setReviews(res);
       setPages(Math.ceil(res.length / 6));
       setIsLoading(false);
     });
-  }, []);
+  }, [selected]);
 
   function createNestedArrays(arr, num) {
     const nestedArr = [];
@@ -68,42 +81,44 @@ export default function Reviews({
         ) : (
           createNestedArrays(reviews, pages)[currentPage].map((review) => {
             return (
-              <Link
-                to={url}
+              <div
                 id={review.review_id}
                 key={review.review_id}
                 onMouseOver={changeUrl}
-                onClickCapture={changeUrl}
-                className="reviewLink">
-                <div
+                className="review">
+                <Link
+                  to={url}
                   id={review.review_id}
                   key={review.review_id}
                   onMouseOver={changeUrl}
-                  className="review">
+                  onClickCapture={changeUrl}
+                  className="reviewLink">
                   <img
                     src={review.review_img_url}
                     alt={review.title}
                     id={review.review_id}
+                    className="reviewImage"
                     onMouseOver={changeUrl}></img>
-                  <div id={review.review_id} onMouseOver={changeUrl}>
-                    <h2
-                      className="reviewTitle"
-                      id={review.review_id}
-                      onMouseOver={changeUrl}>
-                      {review.title}
-                    </h2>
-                    <p id={review.review_id} onMouseOver={changeUrl}>
-                      By {review.owner}
-                    </p>
-                    <p
-                      id={review.review_id}
-                      className="votes"
-                      onMouseOver={changeUrl}>
-                      Votes: {review.votes}
-                    </p>
-                  </div>
+                </Link>
+                <div id={review.review_id} onMouseOver={changeUrl}>
+                  <h2
+                    className="reviewTitle"
+                    id={review.review_id}
+                    onMouseOver={changeUrl}>
+                    {review.title}
+                  </h2>
+                  <p id={review.review_id} onMouseOver={changeUrl}>
+                    By {review.owner}
+                  </p>
+                  <p
+                    id={review.review_id}
+                    className={review.className}
+                    onMouseOver={changeUrl}
+                    onClickCapture={handleVoteClick}>
+                    Votes: <span id="voteCount">{review.votes}</span>
+                  </p>
                 </div>
-              </Link>
+              </div>
             );
           })
         )}

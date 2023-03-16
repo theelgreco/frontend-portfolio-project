@@ -3,7 +3,7 @@ import { fetchReviewById } from "../utils/api";
 import { useState, useEffect } from "react";
 import Comments from "./Comments";
 
-export default function SingleReview() {
+export default function SingleReview({ votedReviews, handleVoteClick }) {
   const { review_id } = useParams();
   const [singleReview, setSingleReview] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -11,6 +11,14 @@ export default function SingleReview() {
   useEffect(() => {
     setIsLoading(true);
     fetchReviewById(review_id).then((res) => {
+      if (
+        Object.keys(votedReviews).includes(res.review_id.toString()) &&
+        votedReviews[res.review_id]
+      ) {
+        res.className = "votes voted";
+      } else {
+        res.className = "votes";
+      }
       setSingleReview(res);
       setIsLoading(false);
     });
@@ -20,7 +28,7 @@ export default function SingleReview() {
     <main className="SingleReviewComponent">
       <section>
         {isLoading ? (
-          <h1>LOADING...</h1>
+          <h1 className="loading">LOADING...</h1>
         ) : (
           <div className="singleReview">
             <h2>{singleReview.title}</h2>
@@ -30,6 +38,12 @@ export default function SingleReview() {
               alt={singleReview.title}></img>
             <div className="reviewBody">
               <p>{singleReview.review_body}</p>
+              <p
+                className={singleReview.className}
+                onClickCapture={handleVoteClick}
+                id={singleReview.review_id}>
+                Votes: <span id="voteCount">{singleReview.votes}</span>
+              </p>
               <p className="date">
                 Posted: {new Date(singleReview.created_at).toLocaleDateString()}
               </p>
