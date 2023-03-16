@@ -8,6 +8,8 @@ export default function CommentForm({ review_id }) {
   const [users, setUsers] = useState([]);
   const [usersClass, setUsersClass] = useState("users hidden");
   const [isSignedIn, setIsSignedin] = useState(false);
+  const [formText, setFormText] = useState("");
+  const [isPosting, setIsPosting] = useState(false);
 
   useEffect(() => {
     fetchUsers().then((res) => {
@@ -22,12 +24,25 @@ export default function CommentForm({ review_id }) {
   }, []);
 
   function handleChange(e) {
+    setFormText(e.target.value);
     setNewComment({ ...newComment, body: e.target.value });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    postComment(newComment, review_id);
+    setFormText("");
+    setIsPosting(true);
+    users.map((user) => {
+      return (user.className = "hidden");
+    });
+    postComment(newComment, review_id).then(() => {
+      setUsersClass("hidden");
+      setIsPosting(false);
+      setIsSignedin(false);
+      users.map((user) => {
+        return (user.className = "userIcon");
+      });
+    });
   }
 
   function handleClick(e) {
@@ -48,7 +63,6 @@ export default function CommentForm({ review_id }) {
         }
         return user;
       });
-
       setNewComment({ ...newComment, username: e.target.id });
       setIsSignedin(true);
       setUsers(selectedUser);
@@ -67,15 +81,17 @@ export default function CommentForm({ review_id }) {
 
   return (
     <section>
-      <button className="commentBtn" onClick={handleClick} required>
+      <button className="commentBtn write" onClick={handleClick} required>
         WRITE A COMMENT
       </button>
       <div className={usersClass}>
-        {isSignedIn ? (
+        {isPosting ? <h1 className="posting">POSTING</h1> : <></>}
+        {isSignedIn && !isPosting ? (
           <>
             <form onSubmit={handleSubmit}>
               <textarea
                 className="commentForm"
+                value={formText}
                 onChange={handleChange}></textarea>
               <button className="commentBtn submit">Post Comment</button>
             </form>
@@ -88,6 +104,7 @@ export default function CommentForm({ review_id }) {
             <div
               className={user.className}
               id={user.username}
+              key={user.username}
               onClick={selectUser}>
               <p id={user.username}>{user.username}</p>
               <img
@@ -105,7 +122,7 @@ export default function CommentForm({ review_id }) {
           );
         })}
         <div className="close">
-          <p onClick={handleClick} id={"closeBtn"}>
+          <p onClickCapture={handleClick} id={"closeBtn"}>
             X
           </p>
         </div>

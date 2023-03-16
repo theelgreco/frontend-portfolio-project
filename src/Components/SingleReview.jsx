@@ -51,7 +51,7 @@ export default function SingleReview({ votedReviews, handleVoteClick }) {
           </div>
         )}
       </section>
-      <Comments review_id={review_id} />
+      {isLoading ? <></> : <Comments review_id={review_id} />}
     </main>
   );
 }
