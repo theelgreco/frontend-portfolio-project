@@ -6,6 +6,7 @@ const gamesApi = axios.create({
 
 export const fetchReviews = (category) => {
   let urlString = `/reviews`;
+
   if (category) {
     urlString += `?category=${category}`;
   }
