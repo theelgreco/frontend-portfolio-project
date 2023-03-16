@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { fetchUsers } from "../utils/api";
 import { removeImageBackground } from "../utils/utils";
+import { postComment } from "../utils/api";
 
-export default function CommentForm({ comments, setComments }) {
-  //   const [newComment, setNewComment] = useState({});
+export default function CommentForm({ review_id }) {
+  const [newComment, setNewComment] = useState({});
   const [users, setUsers] = useState([]);
   const [usersClass, setUsersClass] = useState("users hidden");
   const [isSignedIn, setIsSignedin] = useState(false);
@@ -17,14 +18,16 @@ export default function CommentForm({ comments, setComments }) {
         });
         setUsers(res);
       });
-      console.log(res);
     });
   }, []);
 
+  function handleChange(e) {
+    setNewComment({ ...newComment, body: e.target.value });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(comments);
-    console.log(e.target.value);
+    postComment(newComment, review_id);
   }
 
   function handleClick(e) {
@@ -36,17 +39,30 @@ export default function CommentForm({ comments, setComments }) {
   }
 
   function selectUser(e) {
-    const selectedUser = users.map((user) => {
-      if (user.username !== e.target.id) {
-        user.className = "hidden";
-      } else {
-        user.className += " selected";
-      }
+    if (!isSignedIn) {
+      const selectedUser = users.map((user) => {
+        if (user.username !== e.target.id) {
+          user.className = "hidden";
+        } else {
+          user.className += " selected";
+        }
+        return user;
+      });
+
+      setNewComment({ ...newComment, username: e.target.id });
+      setIsSignedin(true);
+      setUsers(selectedUser);
+    }
+  }
+
+  function changeProfile(e) {
+    e.preventDefault();
+    setIsSignedin(false);
+    const allUsers = users.map((user) => {
+      user.className = "userIcon";
       return user;
     });
-
-    setIsSignedin(true);
-    setUsers(selectedUser);
+    setUsers(allUsers);
   }
 
   return (
@@ -57,8 +73,10 @@ export default function CommentForm({ comments, setComments }) {
       <div className={usersClass}>
         {isSignedIn ? (
           <>
-            <form>
-              <textarea className="commentForm"></textarea>
+            <form onSubmit={handleSubmit}>
+              <textarea
+                className="commentForm"
+                onChange={handleChange}></textarea>
               <button className="commentBtn submit">Post Comment</button>
             </form>
           </>
@@ -77,7 +95,9 @@ export default function CommentForm({ comments, setComments }) {
                 id={user.username}
                 alt={user.username}></img>
               {isSignedIn ? (
-                <button className="commentBtn profile">Change profile</button>
+                <button className="commentBtn profile" onClick={changeProfile}>
+                  Change profile
+                </button>
               ) : (
                 <></>
               )}

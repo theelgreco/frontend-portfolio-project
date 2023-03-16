@@ -13,7 +13,11 @@ export default function Comments({ review_id }) {
 
   return (
     <section className="CommentsComponent">
-      <CommentForm comments={comments} setComments={setComments} />
+      <CommentForm
+        comments={comments}
+        setComments={setComments}
+        review_id={review_id}
+      />
       {comments.length ? (
         <div className="commentsList">
           {comments.map((comment) => {

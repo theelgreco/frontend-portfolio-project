@@ -27,13 +27,33 @@ export const fetchReviewById = (id) => {
 };
 
 export const fetchComments = (id) => {
-  return gamesApi.get(`/reviews/${id}/comments`).then((res) => {
-    return res.data.comments;
-  });
+  return gamesApi
+    .get(`/reviews/${id}/comments`)
+    .then((res) => {
+      return res.data.comments;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 export const fetchUsers = () => {
-  return gamesApi.get("/users").then((res) => {
-    return res.data.users;
-  });
+  return gamesApi
+    .get("/users")
+    .then((res) => {
+      return res.data.users;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+export const postComment = (comment, id) => {
+  return gamesApi
+    .post(`/reviews/${id}/comments`, comment, {
+      headers: { Content: "application/json" },
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
