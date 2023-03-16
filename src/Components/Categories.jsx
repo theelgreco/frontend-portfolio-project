@@ -15,6 +15,7 @@ export default function Categories() {
   return (
     <main>
       <h1>Categories</h1>
+
       {reviews.map((review) => {
         return <h1>{review.title}</h1>;
       })}
