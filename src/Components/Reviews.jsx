@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchReviews, fetchCategories } from "../api";
+import { fetchReviews, fetchCategories } from "../utils/api";
 import { Link } from "react-router-dom";
 
 export default function Reviews({
@@ -117,12 +117,17 @@ export default function Reviews({
                   onMouseOver={changeUrl}
                   onClickCapture={changeUrl}
                   className="reviewLink">
-                  <img
-                    src={review.review_img_url}
-                    alt={review.title}
+                  <div
+                    className="imgDiv"
                     id={review.review_id}
-                    className="reviewImage"
-                    onMouseOver={changeUrl}></img>
+                    onMouseOver={changeUrl}>
+                    <img
+                      src={review.review_img_url}
+                      alt={review.title}
+                      id={review.review_id}
+                      className="reviewImage"
+                      onMouseOver={changeUrl}></img>
+                  </div>
                 </Link>
                 <div id={review.review_id} onMouseOver={changeUrl}>
                   <h2

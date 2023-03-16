@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { fetchReviewById } from "../api";
+import { fetchReviewById } from "../utils/api";
 import { useState, useEffect } from "react";
 import Comments from "./Comments";
 
@@ -51,7 +51,7 @@ export default function SingleReview({ votedReviews, handleVoteClick }) {
           </div>
         )}
       </section>
-      <Comments review_id={review_id} />
+      {isLoading ? <></> : <Comments review_id={review_id} />}
     </main>
   );
 }

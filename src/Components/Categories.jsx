@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchReviews } from "../api";
+import { fetchReviews } from "../utils/api";
 
 export default function Categories() {
   const { category } = useParams();
