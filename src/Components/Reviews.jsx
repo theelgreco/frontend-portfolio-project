@@ -42,6 +42,7 @@ export default function Reviews({
       setPages(Math.ceil(res.length / 6));
       setIsLoading(false);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected, sortBy, order]);
 
   function handleSelect(e) {

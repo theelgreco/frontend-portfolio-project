@@ -62,6 +62,7 @@ function App() {
 
   function checkIfVoted(id, votedObj) {
     let isVoted = false;
+    // eslint-disable-next-line no-unused-vars
     for (let vote in votedObj) {
       if (votedObj[id]) {
         isVoted = true;
