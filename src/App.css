@@ -145,6 +145,7 @@
 .commentText {
   font-style: italic;
   translate: 0 2vh;
+  line-break: anywhere;
 }
 
 .noComments {
