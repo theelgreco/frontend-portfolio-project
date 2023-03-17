@@ -19,7 +19,7 @@ export default function DropdownMenus({
         })}
       </select>
       <select id="sortBy" onChange={handleSelect} value={sortBy}>
-        <option value="" disabled selected>
+        <option value="" disabled defaultValue="">
           Sort By
         </option>
         <option value="created_at">Date</option>
@@ -28,7 +28,7 @@ export default function DropdownMenus({
         <option value="votes">Votes</option>
       </select>
       <select id="order" onChange={handleSelect} value={order}>
-        <option value="" disabled selected>
+        <option value="" disabled defaultValue="">
           Order
         </option>
         <option value="desc">Desc</option>
