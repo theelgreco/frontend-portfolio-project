@@ -12,9 +12,9 @@ export default function Reviews({
   votedReviews,
   handleVoteClick,
   createNestedArrays,
-  url,
   changeUrl,
   categories,
+  url,
   sortBy,
   order,
   setOrder,
@@ -58,6 +58,7 @@ export default function Reviews({
   return (
     <main className="Reviews">
       <h1>REVIEWS</h1>
+
       <CategoryButtons
         url={url}
         changeUrl={changeUrl}
@@ -89,7 +90,6 @@ export default function Reviews({
                     id={review.review_id}
                     key={review.review_id}
                     onMouseOver={changeUrl}
-                    onClickCapture={changeUrl}
                     className="reviewLink">
                     <div
                       className="imgDiv"
