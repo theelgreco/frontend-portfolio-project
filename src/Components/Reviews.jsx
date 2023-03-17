@@ -63,6 +63,11 @@ export default function Reviews({
     setUrl(`/${e.target.id}`);
   }
 
+  function handleDelete(e) {
+    const reviewIdToDelete = e.target.parentNode.id;
+    console.dir(reviewIdToDelete);
+  }
+
   return (
     <main className="Reviews">
       <h1>REVIEWS</h1>
@@ -122,6 +127,7 @@ export default function Reviews({
                     onClickCapture={handleVoteClick}>
                     Votes: <span id="voteCount">{review.votes}</span>
                   </p>
+                  <div className="delete" onClick={handleDelete}></div>
                 </div>
               </div>
             );

@@ -33,7 +33,7 @@
 
 .review:hover,
 .reviewLink:focus {
-  scale: 1.1;
+  scale: 1.05;
   cursor: pointer;
   transition: 0.5s ease-in-out;
   outline: none;
@@ -440,4 +440,19 @@ form {
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+}
+
+.delete {
+  width: 2em;
+  height: 2em;
+  background: url(./bin.png);
+  background-size: contain;
+  transition: background 0.2s ease-out;
+  margin: 0 auto;
+}
+
+.delete:hover {
+  background: url(./binClicked.png);
+  background-size: contain;
+  transition: 0.2s ease-in;
 }
