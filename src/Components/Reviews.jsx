@@ -14,13 +14,10 @@ export default function Reviews({
   changeUrl,
   categories,
   url,
-  setUrl,
 }) {
   const [reviews, setReviews] = useState([]);
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  // const [url, setUrl] = useState("");
-  const [deleteClicked, setDeleteClicked] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -47,16 +44,10 @@ export default function Reviews({
     setSelected(e.target.value);
   }
 
-  function handleDelete(e) {
-    const reviewIdToDelete = e.target.parentNode.id;
-    console.dir(reviewIdToDelete);
-    setDeleteClicked(true);
-  }
-
   return (
     <main className="Reviews">
       <h1>REVIEWS</h1>
-      {deleteClicked ? <div className="users"></div> : <></>}
+
       <CategoryButtons
         url={url}
         changeUrl={changeUrl}
@@ -89,7 +80,6 @@ export default function Reviews({
                     key={review.review_id}
                     onMouseOver={changeUrl}
                     className="reviewLink">
-                    {/* <div className="delete" onClick={handleDelete}></div> */}
                     <div
                       className="imgDiv"
                       id={review.review_id}

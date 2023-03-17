@@ -78,3 +78,7 @@ export const fetchCategories = () => {
     return res.data.categories;
   });
 };
+
+export const deleteComment = (id) => {
+  return gamesApi.delete(`/comments/${id}`);
+};

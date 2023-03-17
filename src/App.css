@@ -254,27 +254,37 @@
   display: none;
 }
 
-.users {
-  display: flex;
+.popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border: 2px solid black;
+  z-index: 100;
+  overflow: scroll;
+  border-radius: 2em;
+  backdrop-filter: blur(1em);
+  overflow-x: hidden;
+}
+
+.users {
+  display: flex;
   width: 85vw;
   height: 90vh;
   max-height: fit-content;
-  border: 2px solid black;
-  z-index: 100;
-  /* background-color: white; */
   flex-flow: column-reverse nowrap;
-  overflow: scroll;
   justify-content: space-between;
-  border-radius: 2em;
-  backdrop-filter: blur(1em);
   animation: borderGlow 6s cubic-bezier(0.075, 0.82, 0.165, 1) 0s infinite
       alternate-reverse,
     grow 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 alternate;
-  overflow-x: hidden;
+}
+
+.delete {
+  width: 30em;
+  max-width: 80vw;
+  height: 15em;
+  overflow: hidden;
+  backdrop-filter: blur(2em);
 }
 
 .hidden {
@@ -452,21 +462,6 @@ form {
   animation-timing-function: ease-in-out;
 }
 
-.delete {
-  width: 2em;
-  height: 2em;
-  background: url(./bin.png);
-  background-size: contain;
-  transition: background 0.2s ease-out;
-  margin: 0 auto;
-}
-
-.delete:hover {
-  background: url(./binClicked.png);
-  background-size: contain;
-  transition: 0.2s ease-in;
-}
-
 .categoryButtons {
   display: flex;
   flex-flow: row wrap;
@@ -480,7 +475,6 @@ form {
   min-width: 150px;
   height: 3em;
   margin: 0.5em;
-  /* background-color: black; */
   border-radius: 1em;
   border-top-left-radius: 0.2em;
   border-top-right-radius: 0.2em;
@@ -513,7 +507,52 @@ select {
   height: 3em;
   margin-top: 4vh;
   margin-bottom: 2vh;
-  /* border: 0.5em solid black; */
   box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
   border-radius: 1em;
+}
+
+.deleteIcon {
+  width: 2em;
+  height: 2em;
+  background: url(./bin.png);
+  background-size: contain;
+  transition: background 0.2s ease-out;
+  margin: 0 auto;
+}
+
+.deleteIcon:hover {
+  background: url(./binClicked.png);
+  background-size: contain;
+  transition: 0.2s ease-in;
+}
+
+.popupContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popupContainer > p {
+  font-weight: 550;
+  font-size: 1em;
+}
+
+.deleteButtons {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.deleteButtons > button {
+  min-width: 30%;
+  min-height: 5vh;
+  margin: 1em;
+  border-radius: 3em;
+  transition: background-color 0.2s ease-out;
+}
+
+.deleteButtons > button:hover {
+  background-color: black;
+  color: white;
+  transition: 0.3s ease-in;
 }
