@@ -85,33 +85,44 @@ export default function Reviews({
                   id={review.review_id}
                   key={review.review_id}
                   onMouseOver={changeUrl}
+                  onClickCapture={changeUrl}
                   className="review">
                   <Link
                     to={url}
                     id={review.review_id}
                     key={review.review_id}
                     onMouseOver={changeUrl}
+                    onClickCapture={changeUrl}
                     className="reviewLink">
                     <div
                       className="imgDiv"
                       id={review.review_id}
+                      onClickCapture={changeUrl}
                       onMouseOver={changeUrl}>
                       <img
                         src={review.review_img_url}
                         alt={review.title}
                         id={review.review_id}
                         className="reviewImage"
+                        onClickCapture={changeUrl}
                         onMouseOver={changeUrl}></img>
                     </div>
                   </Link>
-                  <div id={review.review_id} onMouseOver={changeUrl}>
+                  <div
+                    id={review.review_id}
+                    onClickCapture={changeUrl}
+                    onMouseOver={changeUrl}>
                     <h2
                       className="reviewTitle"
                       id={review.review_id}
+                      onClickCapture={changeUrl}
                       onMouseOver={changeUrl}>
                       {review.title}
                     </h2>
-                    <p id={review.review_id} onMouseOver={changeUrl}>
+                    <p
+                      id={review.review_id}
+                      onClickCapture={changeUrl}
+                      onMouseOver={changeUrl}>
                       By {review.owner}
                     </p>
                     <p
