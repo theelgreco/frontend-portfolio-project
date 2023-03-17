@@ -14,6 +14,7 @@ export default function Reviews({
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState("");
+  const [deleteClicked, setDeleteClicked] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -66,11 +67,13 @@ export default function Reviews({
   function handleDelete(e) {
     const reviewIdToDelete = e.target.parentNode.id;
     console.dir(reviewIdToDelete);
+    setDeleteClicked(true);
   }
 
   return (
     <main className="Reviews">
       <h1>REVIEWS</h1>
+      {deleteClicked ? <div className="users"></div> : <></>}
       <select id="select" onChange={handleSelect} value={selected}>
         {createNestedArrays(reviews, pages).map((arr, index) => {
           return (
