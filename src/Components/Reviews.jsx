@@ -37,7 +37,7 @@ export default function Reviews({
       setPages(Math.ceil(res.length / 6));
       setIsLoading(false);
     });
-  }, [selected, votedReviews]);
+  }, [selected]);
 
   function handleSelect(e) {
     setCurrentPageReviews(e.target.value);

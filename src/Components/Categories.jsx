@@ -39,7 +39,7 @@ export default function Categories({
       setPages(Math.ceil(res.length / 6));
       setIsLoading(false);
     });
-  }, [category, votedReviews]);
+  }, [category]);
 
   function handleSelect(e) {
     setCurrentPageCategories(e.target.value);
