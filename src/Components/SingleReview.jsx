@@ -22,13 +22,13 @@ export default function SingleReview({ votedReviews, handleVoteClick }) {
       setSingleReview(res);
       setIsLoading(false);
     });
-  }, [review_id]);
+  }, [review_id, votedReviews]);
 
   return (
     <main className="SingleReviewComponent">
       <section>
         {isLoading ? (
-          <h1 className="loading">LOADING...</h1>
+          <h1 className="loading">LOADING</h1>
         ) : (
           <div className="singleReview">
             <h2>{singleReview.title}</h2>
