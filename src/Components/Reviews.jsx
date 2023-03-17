@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchReviews } from "../utils/api";
 import { Link } from "react-router-dom";
 import CategoryButtons from "./CategoryButtons";
+import DropdownMenus from "./DropdownMenus";
 
 export default function Reviews({
   currentPageReviews,
@@ -14,6 +15,10 @@ export default function Reviews({
   changeUrl,
   categories,
   url,
+  sortBy,
+  order,
+  setOrder,
+  setSortBy,
 }) {
   const [reviews, setReviews] = useState([]);
   const [pages, setPages] = useState(0);
@@ -21,7 +26,7 @@ export default function Reviews({
 
   useEffect(() => {
     setIsLoading(true);
-    fetchReviews().then((res) => {
+    fetchReviews(null, sortBy, order).then((res) => {
       res.map((review) => {
         if (
           Object.keys(votedReviews).includes(review.review_id.toString()) &&
@@ -37,11 +42,18 @@ export default function Reviews({
       setPages(Math.ceil(res.length / 6));
       setIsLoading(false);
     });
-  }, [selected]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected, sortBy, order]);
 
   function handleSelect(e) {
-    setCurrentPageReviews(e.target.value);
-    setSelected(e.target.value);
+    if (e.target.id === "sortBy") {
+      setSortBy(e.target.value);
+    } else if (e.target.id === "order") {
+      setOrder(e.target.value);
+    } else {
+      setCurrentPageReviews(e.target.value);
+      setSelected(e.target.value);
+    }
   }
 
   return (
@@ -53,15 +65,15 @@ export default function Reviews({
         changeUrl={changeUrl}
         categories={categories}
       />
-      <select id="select" onChange={handleSelect} value={selected}>
-        {createNestedArrays(reviews, pages).map((arr, index) => {
-          return (
-            <option value={index} key={index} id={index}>
-              Page {index + 1}
-            </option>
-          );
-        })}
-      </select>
+      <DropdownMenus
+        createNestedArrays={createNestedArrays}
+        reviews={reviews}
+        pages={pages}
+        handleSelect={handleSelect}
+        selected={selected}
+        sortBy={sortBy}
+        order={order}
+      />
       <section className="reviewsContainer">
         {isLoading ? (
           <h1 className="loading">LOADING</h1>

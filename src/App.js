@@ -14,6 +14,8 @@ function App() {
   const [selected, setSelected] = useState(0);
   const [selectedCategories, setSelectedCategories] = useState(0);
   const [votedReviews, setVotedReviews] = useState({});
+  const [sortBy, setSortBy] = useState("");
+  const [order, setOrder] = useState("");
   const [url, setUrl] = useState("");
   const [categories, setCategories] = useState([]);
 
@@ -60,6 +62,7 @@ function App() {
 
   function checkIfVoted(id, votedObj) {
     let isVoted = false;
+    // eslint-disable-next-line no-unused-vars
     for (let vote in votedObj) {
       if (votedObj[id]) {
         isVoted = true;
@@ -109,6 +112,10 @@ function App() {
               setSelected={setSelected}
               votedReviews={votedReviews}
               handleVoteClick={handleVoteClick}
+              sortBy={sortBy}
+              order={order}
+              setOrder={setOrder}
+              setSortBy={setSortBy}
               createNestedArrays={createNestedArrays}
               changeUrl={changeUrl}
               url={url}
@@ -134,6 +141,10 @@ function App() {
               setUrl={setUrl}
               categories={categories}
               selected={selected}
+              sortBy={sortBy}
+              order={order}
+              setOrder={setOrder}
+              setSortBy={setSortBy}
             />
           }
         />

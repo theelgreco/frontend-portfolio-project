@@ -22,7 +22,8 @@ export default function SingleReview({ votedReviews, handleVoteClick }) {
       setSingleReview(res);
       setIsLoading(false);
     });
-  }, [review_id, votedReviews]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [review_id]);
 
   return (
     <main className="SingleReviewComponent">
