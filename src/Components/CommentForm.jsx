@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { removeImageBackground } from "../utils/utils";
 import { postComment, fetchUsers } from "../utils/api";
 
-export default function CommentForm({ review_id }) {
+export default function CommentForm({ review_id, isPosting, setIsPosting }) {
   const [newComment, setNewComment] = useState({});
   const [users, setUsers] = useState([]);
   const [usersClass, setUsersClass] = useState("popup users hidden");
   const [isSignedIn, setIsSignedin] = useState(false);
   const [formText, setFormText] = useState("");
-  const [isPosting, setIsPosting] = useState(false);
 
   useEffect(() => {
     fetchUsers().then((res) => {

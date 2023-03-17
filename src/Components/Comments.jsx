@@ -7,12 +7,13 @@ export default function Comments({ review_id }) {
   const [popupClass, setPopupClass] = useState("popup hidden");
   const [commentToDelete, setCommentToDelete] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isPosting, setIsPosting] = useState(false);
 
   useEffect(() => {
     fetchComments(review_id).then((res) => {
       setComments(res);
     });
-  }, [review_id, comments]);
+  }, [review_id, isDeleting, isPosting]);
 
   function handleDelete(e) {
     setCommentToDelete(e.target.parentNode.parentNode.id);
@@ -22,7 +23,7 @@ export default function Comments({ review_id }) {
   function confirmDelete(e) {
     if (e.target.value === "yes") {
       setIsDeleting(true);
-      deleteComment(commentToDelete).then((res) => {
+      deleteComment(commentToDelete).then(() => {
         setPopupClass("popup hidden");
         setIsDeleting(false);
       });
@@ -37,6 +38,8 @@ export default function Comments({ review_id }) {
         comments={comments}
         setComments={setComments}
         review_id={review_id}
+        isPosting={isPosting}
+        setIsPosting={setIsPosting}
       />
 
       <div className={popupClass}>
