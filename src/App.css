@@ -271,12 +271,22 @@
   border-radius: 2em;
   backdrop-filter: blur(1em);
   animation: borderGlow 6s cubic-bezier(0.075, 0.82, 0.165, 1) 0s infinite
-    alternate-reverse;
+      alternate-reverse,
+    grow 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 alternate;
   overflow-x: hidden;
 }
 
 .hidden {
   display: none;
+}
+
+@keyframes grow {
+  0% {
+    scale: 0;
+  }
+  100% {
+    scale: 1;
+  }
 }
 
 @keyframes borderGlow {
@@ -439,6 +449,46 @@ form {
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+}
+
+.categoryButtons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 2em;
+  box-shadow: inset 0px 0px 13px 6px rgb(0 0 0 / 48%);
+}
+
+.categoryButtons > a > button {
+  width: 12vw;
+  min-width: 150px;
+  height: 3em;
+  margin: 0.5em;
+  /* background-color: black; */
+  border-radius: 1em;
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+  background-color: white;
+  border: none;
+  border-bottom: 3px solid black;
+  font-weight: bolder;
+  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+  font-style: italic;
+  transition: border-bottom 0.5s ease-out;
+  padding: 0;
+}
+
+.categoryButtons > a > button:hover,
+.categoryButtons > a > button:hover:focus-visible {
+  cursor: pointer;
+  border-bottom: 6px solid black;
+  transition: 0.3s ease-in;
+}
+
+.selectedCategory {
+  box-shadow: inset 0px 0px 7px 2px rgb(0 0 0 / 48%);
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 select {

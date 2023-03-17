@@ -1,17 +1,23 @@
 import "./App.css";
 import Reviews from "./Components/Reviews.jsx";
 import Header from "./Components/Header.jsx";
+import Categories from "./Components/Categories.jsx";
 import { Routes, Route } from "react-router-dom";
 import SingleReview from "./Components/SingleReview";
 import { useState } from "react";
-import { patchVotes } from "./api";
+import { patchVotes, fetchCategories } from "./utils/api";
+import { useEffect } from "react";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPageReviews, setCurrentPageReviews] = useState(0);
+  const [currentPageCategories, setCurrentPageCategories] = useState(0);
   const [selected, setSelected] = useState(0);
+  const [selectedCategories, setSelectedCategories] = useState(0);
   const [votedReviews, setVotedReviews] = useState({});
   const [sortBy, setSortBy] = useState("");
   const [order, setOrder] = useState("");
+  const [url, setUrl] = useState("");
+  const [categories, setCategories] = useState([]);
 
   function handleVoteClick(e) {
     let review_id;
@@ -48,6 +54,12 @@ function App() {
     });
   }
 
+  useEffect(() => {
+    fetchCategories().then((res) => {
+      setCategories(res);
+    });
+  }, []);
+
   function checkIfVoted(id, votedObj) {
     let isVoted = false;
     for (let vote in votedObj) {
@@ -58,6 +70,33 @@ function App() {
     return isVoted;
   }
 
+  function createNestedArrays(arr, num) {
+    const nestedArr = [];
+
+    for (let i = 0; i < num; i++) {
+      nestedArr.push([]);
+    }
+
+    let startingIndex = 0;
+    nestedArr.forEach((array) => {
+      for (let i = 0; i < 6; i++) {
+        if (!arr[startingIndex]) return;
+        array.push(arr[startingIndex]);
+        startingIndex++;
+      }
+    });
+
+    return nestedArr;
+  }
+
+  function changeUrl(e) {
+    if (parseInt(e.target.id)) {
+      setUrl(`/reviews/${e.target.id}`);
+    } else {
+      setUrl(`/categories/${e.target.id}`);
+    }
+  }
+
   return (
     <div className="App">
       <Header />
@@ -66,8 +105,8 @@ function App() {
           path="/"
           element={
             <Reviews
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
+              currentPageReviews={currentPageReviews}
+              setCurrentPageReviews={setCurrentPageReviews}
               selected={selected}
               setSelected={setSelected}
               votedReviews={votedReviews}
@@ -76,17 +115,47 @@ function App() {
               order={order}
               setOrder={setOrder}
               setSortBy={setSortBy}
+              createNestedArrays={createNestedArrays}
+              changeUrl={changeUrl}
+              url={url}
+              setUrl={setUrl}
+              categories={categories}
+              setCategories={selectedCategories}
             />
           }
         />
         <Route
-          path="/:review_id"
+          path="/categories/:category"
+          element={
+            <Categories
+              currentPageCategories={currentPageCategories}
+              setCurrentPageCategories={setCurrentPageCategories}
+              votedReviews={votedReviews}
+              handleVoteClick={handleVoteClick}
+              selectedCategories={selectedCategories}
+              setSelectedCategories={setSelectedCategories}
+              createNestedArrays={createNestedArrays}
+              changeUrl={changeUrl}
+              url={url}
+              setUrl={setUrl}
+              categories={categories}
+              selected={selected}
+              sortBy={sortBy}
+              order={order}
+              setOrder={setOrder}
+              setSortBy={setSortBy}
+            />
+          }
+        />
+        <Route
+          path="/reviews/:review_id"
           element={
             <SingleReview
               votedReviews={votedReviews}
               handleVoteClick={handleVoteClick}
             />
-          }></Route>
+          }
+        />
       </Routes>
     </div>
   );

@@ -78,3 +78,18 @@ export const postComment = (comment, id) => {
       console.error(err);
     });
 };
+
+export const patchVotes = (id, votes) => {
+  const data = { inc_votes: votes };
+  return gamesApi.patch(`/reviews/${id}`, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+export const fetchCategories = () => {
+  return gamesApi.get("/categories").then((res) => {
+    return res.data.categories;
+  });
+};

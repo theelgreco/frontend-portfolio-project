@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchUsers } from "../utils/api";
 import { removeImageBackground } from "../utils/utils";
-import { postComment } from "../utils/api";
+import { postComment, fetchUsers } from "../utils/api";
 
 export default function CommentForm({ review_id }) {
   const [newComment, setNewComment] = useState({});
