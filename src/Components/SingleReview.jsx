@@ -22,7 +22,7 @@ export default function SingleReview({ votedReviews, handleVoteClick }) {
       setSingleReview(res);
       setIsLoading(false);
     });
-  }, [review_id]);
+  }, [review_id, votedReviews]);
 
   return (
     <main className="SingleReviewComponent">
