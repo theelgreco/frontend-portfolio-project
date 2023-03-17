@@ -1,30 +1,29 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { fetchReviews } from "../utils/api";
 import { Link } from "react-router-dom";
 import CategoryButtons from "./CategoryButtons";
 
-export default function Reviews({
-  currentPageReviews,
-  setCurrentPageReviews,
-  selected,
-  setSelected,
+export default function Categories({
+  currentPageCategories,
+  setCurrentPageCategories,
   votedReviews,
   handleVoteClick,
   createNestedArrays,
-  changeUrl,
-  categories,
   url,
-  setUrl,
+  changeUrl,
+  setSelectedCategories,
+  selectedCategories,
+  categories,
 }) {
+  const { category } = useParams();
   const [reviews, setReviews] = useState([]);
-  const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  // const [url, setUrl] = useState("");
-  const [deleteClicked, setDeleteClicked] = useState(false);
+  const [pages, setPages] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchReviews().then((res) => {
+    fetchReviews(category).then((res) => {
       res.map((review) => {
         if (
           Object.keys(votedReviews).includes(review.review_id.toString()) &&
@@ -40,29 +39,22 @@ export default function Reviews({
       setPages(Math.ceil(res.length / 6));
       setIsLoading(false);
     });
-  }, [selected]);
+  }, [category]);
 
   function handleSelect(e) {
-    setCurrentPageReviews(e.target.value);
-    setSelected(e.target.value);
-  }
-
-  function handleDelete(e) {
-    const reviewIdToDelete = e.target.parentNode.id;
-    console.dir(reviewIdToDelete);
-    setDeleteClicked(true);
+    setCurrentPageCategories(e.target.value);
+    setSelectedCategories(e.target.value);
   }
 
   return (
-    <main className="Reviews">
-      <h1>REVIEWS</h1>
-      {deleteClicked ? <div className="users"></div> : <></>}
+    <main>
+      <h1>{category}</h1>
       <CategoryButtons
         url={url}
         changeUrl={changeUrl}
         categories={categories}
       />
-      <select id="select" onChange={handleSelect} value={selected}>
+      <select id="select" onChange={handleSelect} value={selectedCategories}>
         {createNestedArrays(reviews, pages).map((arr, index) => {
           return (
             <option value={index} key={index} id={index}>
@@ -75,7 +67,7 @@ export default function Reviews({
         {isLoading ? (
           <h1 className="loading">LOADING</h1>
         ) : (
-          createNestedArrays(reviews, pages)[currentPageReviews].map(
+          createNestedArrays(reviews, pages)[currentPageCategories].map(
             (review) => {
               return (
                 <div
@@ -88,8 +80,8 @@ export default function Reviews({
                     id={review.review_id}
                     key={review.review_id}
                     onMouseOver={changeUrl}
+                    onClickCapture={changeUrl}
                     className="reviewLink">
-                    {/* <div className="delete" onClick={handleDelete}></div> */}
                     <div
                       className="imgDiv"
                       id={review.review_id}
