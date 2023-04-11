@@ -1,11 +1,26 @@
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface");
+@import url("https://fonts.googleapis.com/css?family=Lexend");
 
-/* * {
-  font-family: "Josefin Sans";
-} */
+* {
+  font-family: "Lexend";
+}
+
+h1,
+h2 {
+  font-family: "Abril Fatface";
+}
 
 .App {
   text-align: center;
+}
+
+.Header {
+  margin-top: 2vh;
+}
+
+.logo {
+  width: 50px;
 }
 
 .Reviews {
@@ -490,9 +505,7 @@ form {
   background-color: white;
   border: none;
   border-bottom: 3px solid black;
-  font-weight: bolder;
   box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
-  font-style: italic;
   transition: border-bottom 0.5s ease-out;
   padding: 0;
 }

@@ -117,6 +117,14 @@ export default function Categories({
                     <p id={review.review_id} onMouseOver={changeUrl}>
                       By {review.owner}
                     </p>
+                    <p>
+                      {new Date(review.created_at).toLocaleDateString("en-gb", {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </p>
                     <p
                       id={review.review_id}
                       className={review.className}
