@@ -58,7 +58,7 @@ export default function Reviews({
 
   return (
     <main className="Reviews">
-      <h1 className="categoryTitle">reviews</h1>
+      <h1 className="categoryTitle">all reviews</h1>
 
       <CategoryButtons
         url={url}
