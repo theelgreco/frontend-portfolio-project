@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchReviews } from "../utils/api";
 import { Link } from "react-router-dom";
 import CategoryButtons from "./CategoryButtons";
-import DropdownMenus from "./DropdownMenus";
+import Header from "./Header";
 
 export default function Reviews({
   currentPageReviews,
@@ -58,14 +58,7 @@ export default function Reviews({
 
   return (
     <main className="Reviews">
-      <h1 className="categoryTitle">all reviews</h1>
-
-      <CategoryButtons
-        url={url}
-        changeUrl={changeUrl}
-        categories={categories}
-      />
-      <DropdownMenus
+      <Header
         createNestedArrays={createNestedArrays}
         reviews={reviews}
         pages={pages}
@@ -74,6 +67,13 @@ export default function Reviews({
         sortBy={sortBy}
         order={order}
       />
+      <CategoryButtons
+        url={url}
+        changeUrl={changeUrl}
+        categories={categories}
+      />
+
+      <h1 className="categoryTitle">all reviews</h1>
       <section className="reviewsContainer">
         {isLoading ? (
           <h1 className="loading">LOADING</h1>
