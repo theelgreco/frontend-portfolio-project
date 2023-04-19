@@ -4,7 +4,13 @@ import { useState, useEffect } from "react";
 import Comments from "./Comments";
 import Header from "./Header";
 
-export default function SingleReview({ votedReviews, handleVoteClick }) {
+export default function SingleReview({
+  votedReviews,
+  handleVoteClick,
+  categories,
+  changeUrl,
+  url,
+}) {
   const { review_id } = useParams();
   const [singleReview, setSingleReview] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +34,12 @@ export default function SingleReview({ votedReviews, handleVoteClick }) {
 
   return (
     <main className="SingleReviewComponent">
-      <Header />
+      <Header
+        categories={categories}
+        collapsed={true}
+        changeUrl={changeUrl}
+        url={url}
+      />
       <section>
         {isLoading ? (
           <h1 className="loading">LOADING</h1>

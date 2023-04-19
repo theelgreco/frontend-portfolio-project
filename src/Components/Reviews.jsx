@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchReviews } from "../utils/api";
 import { Link } from "react-router-dom";
-import CategoryButtons from "./CategoryButtons";
 import Header from "./Header";
 
 export default function Reviews({
@@ -66,14 +65,12 @@ export default function Reviews({
         selected={selected}
         sortBy={sortBy}
         order={order}
-      />
-      <CategoryButtons
         url={url}
         changeUrl={changeUrl}
         categories={categories}
       />
 
-      <h1 className="categoryTitle">all reviews</h1>
+      <h1 className="categoryTitle">All reviews</h1>
       <section className="reviewsContainer">
         {isLoading ? (
           <h1 className="loading">LOADING</h1>

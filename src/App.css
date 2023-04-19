@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
 @import url("https://fonts.googleapis.com/css?family=Abril+Fatface");
 @import url("https://fonts.googleapis.com/css?family=Lexend");
 
@@ -9,21 +8,39 @@
 h1,
 h2 {
   font-family: "Abril Fatface";
+  font-style: italic;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border: 3px solid black;
 }
 
 .App {
   text-align: center;
 }
 
+.stickyBanner {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+}
+
 .Header {
   display: grid;
   place-items: center;
   background-color: white;
-  position: sticky;
-  top: 0;
   height: 160px;
-  z-index: 1000;
-  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+}
+
+.Header.collapsed {
+  height: 65px;
 }
 
 select {
@@ -42,8 +59,63 @@ select {
   margin: 0 auto;
 }
 
+.logo.collapsed {
+  top: 0;
+}
+
 .logoLink {
   width: 50px;
+}
+
+.categoryButtons {
+  height: 60px;
+  display: flex;
+  background-color: black;
+  flex-direction: row;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.categoryButtons > a > button {
+  width: 12vw;
+  min-width: 150px;
+  height: 80px;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  transition: width 0.2s ease-out, min-width 0.2s ease-out;
+}
+
+.categoryButtons > a > button:hover,
+.categoryButtons > a > button:hover:focus-visible {
+  cursor: pointer;
+  box-shadow: inset 0px 0px 20px 15px rgba(255, 255, 255, 0.25);
+  color: whitesmoke;
+  transition: 0.2s ease-in;
+}
+
+.selectedCategory {
+  box-shadow: inset 0px 0px 20px 15px rgba(255, 255, 255, 0.25);
+  color: whitesmoke;
+}
+
+.categoryButtons::-webkit-scrollbar-thumb {
+  height: 1px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.categoryButtons::-webkit-scrollbar {
+  height: 3px;
+  background-color: black;
 }
 
 .Reviews {
@@ -97,17 +169,6 @@ select {
   position: relative;
 }
 
-/* .imgDiv::after {
-  content: "";
-  box-shadow: inset 0px 0px 13px 4px rgb(0 0 0 / 48%);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-} */
-
 .reviewTitle {
   white-space: nowrap;
   overflow: hidden;
@@ -120,13 +181,11 @@ select {
   width: 90vw;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   border-radius: 2% 2% 5% 5%;
-
   position: relative;
 }
 
 .singleReview > img {
   aspect-ratio: 3/2;
-  /* box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; */
   object-fit: cover;
   width: 100%;
   border-radius: 2% 2% 0% 0%;
@@ -139,7 +198,6 @@ select {
   min-height: 15%;
   position: absolute;
   z-index: 100;
-  /* overflow: hidden; */
   margin: 2%;
   align-content: start;
 }
@@ -159,7 +217,6 @@ select {
 }
 
 .singleReviewTitle {
-  /* position: absolute; */
   color: white;
   margin: 0;
   font-size: 4vw;
@@ -167,7 +224,6 @@ select {
 }
 
 .singleReviewAuthor {
-  /* position: absolute; */
   color: white;
   margin: 0;
   z-index: 200;
@@ -556,43 +612,6 @@ form {
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-}
-
-.categoryButtons {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  padding: 2em;
-  box-shadow: inset 0px 0px 13px 6px rgb(0 0 0 / 48%);
-}
-
-.categoryButtons > a > button {
-  width: 12vw;
-  min-width: 150px;
-  height: 3em;
-  margin: 0.5em;
-  border-radius: 1em;
-  border-top-left-radius: 0.2em;
-  border-top-right-radius: 0.2em;
-  background-color: white;
-  border: none;
-  border-bottom: 3px solid black;
-  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
-  transition: border-bottom 0.5s ease-out;
-  padding: 0;
-}
-
-.categoryButtons > a > button:hover,
-.categoryButtons > a > button:hover:focus-visible {
-  cursor: pointer;
-  border-bottom: 6px solid black;
-  transition: 0.3s ease-in;
-}
-
-.selectedCategory {
-  box-shadow: inset 0px 0px 7px 2px rgb(0 0 0 / 48%);
-  border: none;
-  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .deleteIcon {

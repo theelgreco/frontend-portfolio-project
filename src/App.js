@@ -1,6 +1,5 @@
 import "./App.css";
 import Reviews from "./Components/Reviews.jsx";
-// import Header from "./Components/Header.jsx";
 import Categories from "./Components/Categories.jsx";
 import { Routes, Route } from "react-router-dom";
 import SingleReview from "./Components/SingleReview";
@@ -153,6 +152,10 @@ function App() {
             <SingleReview
               votedReviews={votedReviews}
               handleVoteClick={handleVoteClick}
+              createNestedArrays={createNestedArrays}
+              categories={categories}
+              changeUrl={changeUrl}
+              url={url}
             />
           }
         />

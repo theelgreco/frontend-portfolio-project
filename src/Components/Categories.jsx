@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchReviews } from "../utils/api";
 import { Link } from "react-router-dom";
-import CategoryButtons from "./CategoryButtons";
 import Header from "./Header";
 
 export default function Categories({
@@ -14,7 +13,6 @@ export default function Categories({
   url,
   changeUrl,
   setSelectedCategories,
-  selectedCategories,
   selected,
   categories,
   sortBy,
@@ -45,6 +43,7 @@ export default function Categories({
       setPages(Math.ceil(res.length / 6));
       setIsLoading(false);
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, sortBy, order]);
 
@@ -69,11 +68,10 @@ export default function Categories({
         selected={selected}
         sortBy={sortBy}
         order={order}
-      />
-      <CategoryButtons
         url={url}
         changeUrl={changeUrl}
         categories={categories}
+        category={category}
       />
 
       <h1>{category}</h1>
