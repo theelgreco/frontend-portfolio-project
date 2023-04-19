@@ -16,10 +16,33 @@ h2 {
 }
 
 .Header {
-  margin-top: 2vh;
+  display: grid;
+  place-items: center;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  height: 160px;
+  z-index: 1000;
+  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+}
+
+select {
+  text-align: center;
+  width: 8em;
+  height: 3em;
+  position: relative;
+  margin: 1px;
+  border-radius: 1em;
 }
 
 .logo {
+  position: relative;
+  top: 2vh;
+  width: 50px;
+  margin: 0 auto;
+}
+
+.logoLink {
   width: 50px;
 }
 
@@ -93,17 +116,62 @@ h2 {
 }
 
 .singleReview {
-  margin: 0 auto;
-  width: 70vw;
+  margin: 5vh auto;
+  width: 90vw;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  padding: 2vh;
+  border-radius: 2% 2% 5% 5%;
+
+  position: relative;
 }
 
 .singleReview > img {
   aspect-ratio: 3/2;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  /* box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; */
   object-fit: cover;
-  width: 75%;
+  width: 100%;
+  border-radius: 2% 2% 0% 0%;
+}
+
+.singleReviewHeading {
+  text-align: left;
+  display: grid;
+  width: 50%;
+  min-height: 15%;
+  position: absolute;
+  z-index: 100;
+  /* overflow: hidden; */
+  margin: 2%;
+  align-content: start;
+}
+
+.singleReviewHeading::after {
+  content: "";
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  background-color: black;
+  width: 100%;
+  height: 120%;
+  position: absolute;
+  opacity: 50%;
+  filter: blur(40px);
+  border-radius: 10%;
+}
+
+.singleReviewTitle {
+  /* position: absolute; */
+  color: white;
+  margin: 0;
+  font-size: 4vw;
+  z-index: 200;
+}
+
+.singleReviewAuthor {
+  /* position: absolute; */
+  color: white;
+  margin: 0;
+  z-index: 200;
+  font-size: 1.5vw;
 }
 
 .reviewBody {
@@ -285,7 +353,7 @@ h2 {
   left: 50%;
   transform: translate(-50%, -50%);
   border: 2px solid black;
-  z-index: 100;
+  z-index: 2000;
   overflow: scroll;
   border-radius: 2em;
   backdrop-filter: blur(1em);
@@ -468,8 +536,11 @@ form {
 }
 
 .write {
+  width: 30%;
+  box-shadow: inset 0 0 8px 4px rgba(0, 0, 0, 0.1);
   margin-top: 10vh;
-  background-color: violet;
+  border: none;
+  cursor: pointer;
 }
 
 .posting {
@@ -524,27 +595,6 @@ form {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.dropdown {
-  background-color: white;
-  position: sticky;
-  top: 0;
-  height: 100px;
-  z-index: 1000;
-  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
-}
-
-select {
-  text-align: center;
-  width: 8em;
-  height: 3em;
-  position: relative;
-  top: 50%;
-  translate: 0% -50%;
-  margin: 1px;
-  /* box-shadow: rgb(38 57 77) 0px 20px 30px -10px; */
-  border-radius: 1em;
-}
-
 .deleteIcon {
   width: 2em;
   height: 2em;
@@ -589,4 +639,14 @@ select {
   background-color: black;
   color: white;
   transition: 0.3s ease-in;
+}
+
+@media screen and (min-width: 820px) {
+  .singleReview {
+    margin: 5vh auto;
+    width: 60vw;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-radius: 2% 2% 5% 5%;
+    position: relative;
+  }
 }

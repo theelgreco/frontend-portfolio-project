@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { fetchReviewById } from "../utils/api";
 import { useState, useEffect } from "react";
 import Comments from "./Comments";
+import Header from "./Header";
 
 export default function SingleReview({ votedReviews, handleVoteClick }) {
   const { review_id } = useParams();
@@ -27,13 +28,16 @@ export default function SingleReview({ votedReviews, handleVoteClick }) {
 
   return (
     <main className="SingleReviewComponent">
+      <Header />
       <section>
         {isLoading ? (
           <h1 className="loading">LOADING</h1>
         ) : (
           <div className="singleReview">
-            <h2>{singleReview.title}</h2>
-            <p>By {singleReview.owner}</p>
+            <div className="singleReviewHeading">
+              <h2 className="singleReviewTitle">{singleReview.title}</h2>
+              <p className="singleReviewAuthor">By {singleReview.owner}</p>
+            </div>
             <img
               src={singleReview.review_img_url}
               alt={singleReview.title}></img>
