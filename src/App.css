@@ -32,6 +32,7 @@ h2 {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  margin-top: 4vh;
 }
 
 .reviewLink {
@@ -523,13 +524,24 @@ form {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.dropdown {
+  background-color: white;
+  position: sticky;
+  top: 0;
+  height: 100px;
+  z-index: 1000;
+  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+}
+
 select {
   text-align: center;
   width: 8em;
   height: 3em;
-  margin-top: 4vh;
-  margin-bottom: 2vh;
-  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+  position: relative;
+  top: 50%;
+  translate: 0% -50%;
+  margin: 1px;
+  /* box-shadow: rgb(38 57 77) 0px 20px 30px -10px; */
   border-radius: 1em;
 }
 

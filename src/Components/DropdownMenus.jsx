@@ -8,7 +8,7 @@ export default function DropdownMenus({
   order,
 }) {
   return (
-    <>
+    <section className="dropdown">
       <select id="select" onChange={handleSelect} value={selected}>
         {createNestedArrays(reviews, pages).map((arr, index) => {
           return (
@@ -34,6 +34,6 @@ export default function DropdownMenus({
         <option value="desc">Desc</option>
         <option value="asc">Asc</option>
       </select>
-    </>
+    </section>
   );
 }
