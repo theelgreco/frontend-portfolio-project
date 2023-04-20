@@ -108,7 +108,8 @@ export default function Reviews({
                   <div
                     id={review.review_id}
                     onClickCapture={changeUrl}
-                    onMouseOver={changeUrl}>
+                    onMouseOver={changeUrl}
+                    className="reviewCardContent">
                     <h2
                       className="reviewTitle"
                       id={review.review_id}
@@ -124,9 +125,8 @@ export default function Reviews({
                     </p>
                     <p>
                       {new Date(review.created_at).toLocaleDateString("en-gb", {
-                        weekday: "long",
                         year: "numeric",
-                        month: "long",
+                        month: "short",
                         day: "numeric",
                       })}
                     </p>

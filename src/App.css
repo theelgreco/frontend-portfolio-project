@@ -102,6 +102,25 @@ a {
   transition: 0.2s ease-in;
 }
 
+.homeButton {
+  position: relative;
+  height: 80px;
+  background: none;
+  border: none;
+  min-width: 70px;
+  margin-left: 2vw;
+}
+
+.homeButton img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 20px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
 .selectedCategory {
   box-shadow: inset 0px 0px 20px 15px rgba(255, 255, 255, 0.25);
   color: whitesmoke;

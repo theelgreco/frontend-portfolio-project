@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import house from "../house.png";
 
 export default function CategoryButtons({
   categories,
@@ -44,6 +45,11 @@ export default function CategoryButtons({
 
   return (
     <div className="categoryButtons" onScroll={scroll} onWheel={scroll}>
+      <button className="homeButton">
+        <Link to="/">
+          <img src={house} alt="Home button"></img>
+        </Link>
+      </button>
       {categories.map((category) => {
         return (
           <Link
