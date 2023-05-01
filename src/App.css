@@ -199,7 +199,7 @@ a {
   margin: 5vh auto;
   width: 90vw;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  border-radius: 2% 2% 5% 5%;
+  border-radius: 40px;
   position: relative;
 }
 
@@ -207,7 +207,7 @@ a {
   aspect-ratio: 3/2;
   object-fit: cover;
   width: 100%;
-  border-radius: 2% 2% 0% 0%;
+  border-radius: 20px 20px 0 0;
 }
 
 .singleReviewHeading {
@@ -687,7 +687,6 @@ form {
     margin: 5vh auto;
     width: 60vw;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-    border-radius: 2% 2% 5% 5%;
     position: relative;
   }
 }
