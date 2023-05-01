@@ -390,8 +390,9 @@ a {
 }
 
 .voted {
-  background-color: rgba(54, 237, 75, 0.592);
-  border-color: rgba(54, 237, 75, 0.592);
+  background-color: black;
+  color: white;
+  border-color: rgba(54, 237, 75);
 }
 
 .review .votes {
