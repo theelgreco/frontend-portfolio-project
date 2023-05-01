@@ -163,7 +163,7 @@ a {
   width: 40vw;
   overflow: hidden;
   font-size: 0.8em;
-  border-radius: 2% 2% 5% 5%;
+  border-radius: 10px 10px 20px 20px;
   align-items: center;
   transition: scale 0.3s ease-in;
   background-color: whitesmoke;
