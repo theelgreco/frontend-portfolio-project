@@ -119,6 +119,7 @@ export default function Reviews({
                     </h2>
                     <p
                       id={review.review_id}
+                      className="username"
                       onClickCapture={changeUrl}
                       onMouseOver={changeUrl}>
                       By {review.owner}

@@ -195,6 +195,12 @@ a {
   padding: 1vh;
 }
 
+.username {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .singleReview {
   margin: 5vh auto;
   width: 90vw;
