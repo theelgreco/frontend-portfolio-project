@@ -82,7 +82,7 @@ export default function CommentForm({ review_id, isPosting, setIsPosting }) {
   return (
     <section>
       <button className="commentBtn write" onClick={handleClick} required>
-        WRITE A COMMENT
+        Write a comment
       </button>
       <div className={usersClass}>
         {isPosting ? <h1 className="posting">POSTING</h1> : <></>}
