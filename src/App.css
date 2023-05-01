@@ -50,6 +50,7 @@ select {
   position: relative;
   margin: 1px;
   border-radius: 1em;
+  border: 2px solid;
 }
 
 .logo {
